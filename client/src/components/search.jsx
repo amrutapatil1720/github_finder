@@ -5,7 +5,7 @@ class Search extends React.Component {
     super(props);
   }
   render() {
-    console.log("search props", this.props);
+    // console.log("search props", this.props);
     return (
       <div>
         <form className="form" onSubmit={this.props.clickedSearch}>
@@ -24,6 +24,14 @@ class Search extends React.Component {
             className="btn btn-dark btn-block"
           ></input>
         </form>
+        {this.props.showClear && (
+          <button
+            className="btn btn-light btn-block"
+            onClick={this.props.clearUser}
+          >
+            Clear
+          </button>
+        )}
       </div>
     );
   }
