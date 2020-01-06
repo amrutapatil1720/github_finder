@@ -1,5 +1,6 @@
 import React from "react";
 import ProtoTypes from "prop-types";
+import { Link } from "react-router-dom";
 const Navbar = props => {
   return (
     <nav className="navbar bg-danger">
@@ -7,6 +8,14 @@ const Navbar = props => {
         <i className={props.icon}></i>
         {props.title}
       </h4>
+      <ul>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="about">About</Link>
+        </li>
+      </ul>
     </nav>
   );
 };

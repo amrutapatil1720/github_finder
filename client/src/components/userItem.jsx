@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-
+import { Link } from "react-router-dom";
 class UserItem extends React.Component {
   constructor(props) {
     super(props);
@@ -15,12 +15,12 @@ class UserItem extends React.Component {
         ></img>
         <h4>{this.props.user.login}</h4>
         <div>
-          <a
-            href={this.props.user.html_url}
+          <Link
+            to={`/user/${this.props.user.login}`}
             className="btn btn-sm btn-dark my-1"
           >
             More
-          </a>
+          </Link>
         </div>
       </div>
     );

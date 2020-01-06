@@ -1,5 +1,4 @@
-import React from "react";
-// import "bootstrap/dist/css/bootstrap.min.css";
+import React, { Fragment } from "react";
 import "../../dist/style.css";
 import Users from "./users.jsx";
 import Navbar from "./navbar.jsx";
@@ -8,12 +7,16 @@ import regeneratorRuntime from "regenerator-runtime";
 import Search from "./search.jsx";
 import PropTypes from "prop-types";
 import Alert from "./alert.jsx";
+import { HashRouter as Router, Switch, Route } from "react-router-dom";
+import About from "./about.jsx";
+import SingleUser from "./singleUserData.jsx";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       users: [],
+      singleUserData: {},
       isLoading: false,
       alert: null
     };
@@ -91,28 +94,67 @@ class App extends React.Component {
     setTimeout(() => this.setState({ alert: null }), 2000);
   };
 
+  getSingleUserData = async username => {
+    const res = await axios.get(
+      `https://api.github.com/users/${username}?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
+    );
+
+    // console.log(res.data);
+    this.setState({
+      singleUserData: res.data,
+      isLoading: false
+    });
+  };
   render() {
     //   var filteredUser= this.state.
     return (
-      <div>
+      <Router>
         <div>
           <Navbar />
         </div>
         <Alert alert={this.state.alert} />
-        <Search
-          searchUser={this.state.searchUser}
-          handleSearchInput={this.handleSearchInput}
-          clickedSearch={this.clickedSearch}
-          clearUser={this.clearUser}
-          showClear={this.state.users.length > 0 ? true : false}
-          setAlert={this.seAlert}
-        />
-        <div className="container">
-          <Users isLoading={this.state.isLoading} users={this.state.users} />
-        </div>
 
-        {/* <UserItem /> */}
-      </div>
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={props => (
+              <Fragment>
+                <Search
+                  searchUser={this.state.searchUser}
+                  handleSearchInput={this.handleSearchInput}
+                  clickedSearch={this.clickedSearch}
+                  clearUser={this.clearUser}
+                  showClear={this.state.users.length > 0 ? true : false}
+                  setAlert={this.seAlert}
+                />
+                <div className="container">
+                  <Users
+                    isLoading={this.state.isLoading}
+                    users={this.state.users}
+                  />
+                </div>
+              </Fragment>
+            )}
+          />
+          {/* <Route path="about">
+            <About />
+          </Route> */}
+          <Route exact path="/about" component={About} />
+          <Route
+            exact
+            path="/user/:login"
+            render={props => (
+              <SingleUser
+                {...props}
+                getSingleUserData={this.getSingleUserData}
+                singleUserData={this.state.singleUserData}
+                isLoading={this.state.isLoading}
+              />
+            )}
+          />
+        </Switch>
+      </Router>
     );
   }
 }

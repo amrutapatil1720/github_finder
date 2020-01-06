@@ -5,7 +5,8 @@ module.exports = {
   entry: "./client/src/components/index.jsx",
   output: {
     filename: "bundle.js",
-    path: path.resolve(__dirname, "./client/dist")
+    path: path.resolve(__dirname, "./client/dist"),
+    publicPath: "/client/dist"
   },
   module: {
     rules: [
@@ -26,5 +27,8 @@ module.exports = {
         exclude: /\.module\.css$/
       }
     ]
+  },
+  devServer: {
+    historyApiFallback: true
   }
 };
