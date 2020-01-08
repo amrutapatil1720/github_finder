@@ -1,12 +1,16 @@
+/* Global Styles */
+:root {
+  --primary-color: #dc3545;
+  --dark-color: #333333;
+  --light-color: #f4f4f4;
+  --danger-color: #dc3545;
+  --success-color: #28a745;
+}
 .title {
   color: white;
   font-size: medium;
 }
-.card {
-  padding: 1rem;
-  border: #ccc 1px dotted;
-  margin: 0.7rem 0;
-}
+
 .round-img {
   width: 60px;
   border-radius: 50%;
@@ -14,6 +18,22 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+.badge {
+  display: inline-block;
+  border: 1px solid red;
+  margin: 10px;
+
+  font-size: 0.8rem;
+  padding: 0.2rem 0.7rem;
+  text-align: center;
+  margin: 0.3rem;
+  background: var(--light-color);
+  color: #333;
+  border-radius: 5px;
+  width: 150px;
+  height: 28px;
+  padding: 8px;
 }
 .navbar {
   display: flex;
@@ -24,4 +44,69 @@
   width: 100%;
   opacity: 0.9;
   margin-bottom: 1rem;
+}
+.text {
+  text-align: center;
+}
+/* Cards */
+.card {
+  padding: 1rem;
+  border: #ccc 1px dotted;
+  margin: 0.7em 5.2em 0.7em 5.2em;
+}
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 1rem;
+}
+.repo-size {
+  font-size: 0.7em;
+  color: rgb(35, 133, 236);
+}
+.btn-primary,
+.badge-primary {
+  background: var(--primary-color);
+  color: #fff;
+}
+
+.btn-light,
+.badge-light {
+  background: var(--light-color);
+  color: #333;
+}
+
+.btn-dark,
+.badge-dark {
+  background: var(--dark-color);
+  color: #fff;
+}
+.btn-light {
+  margin: 0 1em 0 5.2em;
+}
+.btn-danger,
+.badge-danger {
+  background: var(--danger-color);
+  color: #fff;
+}
+.align {
+  margin-left: 0;
+}
+.my-1 {
+  margin: 1rem 0;
+}
+ul {
+  list-style: none;
+}
+.list li {
+  padding-bottom: 0.3rem;
+}
+.btn-success,
+.badge-success {
+  background: var(--success-color);
+  color: #fff;
+}
+
+.bg-light,
+.badge-light {
+  border: #ccc solid 1px;
 }

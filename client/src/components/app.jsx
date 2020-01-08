@@ -17,6 +17,7 @@ class App extends React.Component {
     this.state = {
       users: [],
       singleUserData: {},
+      repos: [],
       isLoading: false,
       alert: null
     };
@@ -94,6 +95,7 @@ class App extends React.Component {
     setTimeout(() => this.setState({ alert: null }), 2000);
   };
 
+  // get user data
   getSingleUserData = async username => {
     const res = await axios.get(
       `https://api.github.com/users/${username}?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
@@ -102,6 +104,19 @@ class App extends React.Component {
     // console.log(res.data);
     this.setState({
       singleUserData: res.data,
+      isLoading: false
+    });
+  };
+
+  //get repos of user
+  getUserRepos = async username => {
+    const res = await axios.get(
+      `https://api.github.com/users/${username}/repos?per_page=6&sort=created:asc?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
+    );
+
+    // console.log(res.data);
+    this.setState({
+      repos: res.data,
       isLoading: false
     });
   };
@@ -150,6 +165,8 @@ class App extends React.Component {
                 getSingleUserData={this.getSingleUserData}
                 singleUserData={this.state.singleUserData}
                 isLoading={this.state.isLoading}
+                getUserRepos={this.getUserRepos}
+                repos={this.state.repos}
               />
             )}
           />
