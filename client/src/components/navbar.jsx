@@ -9,11 +9,11 @@ const Navbar = props => {
         <i className={props.icon}></i>
         {props.title}
       </h4>
-      <ul>
-        <li>
+      <ul style={{ whitSpace: "nowrap", color: "white" }}>
+        <li style={{ display: "inline" }}>
           <Link to="/">Home</Link>
         </li>
-        <li>
+        <li style={{ display: "inline", marginLeft: "0.4em" }}>
           <Link to="about">About</Link>
         </li>
       </ul>

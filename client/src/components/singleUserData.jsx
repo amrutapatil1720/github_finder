@@ -35,7 +35,11 @@ class SingleUserData extends React.Component {
 
     return (
       <Fragment>
-        <Link to="/" className="btn btn-light">
+        <Link
+          to="/"
+          className="btn btn-light"
+          style={{ margin: "0.7em 0.5em 0.7em 3.2em" }}
+        >
           Back to Search
         </Link>
         Hireable:{" "}
@@ -94,13 +98,19 @@ class SingleUserData extends React.Component {
             </ul>
           </div>
         </div>
-        <div className="card text-center">
-          <div className="badge badge-primary">Followers:{followers}</div>
-          <div className="badge badge-success">Following:{following}</div>
-
-          <div className="badge badge-light">Public Repos:{public_repos}</div>
-
-          <div className="badge badge-dark">Public Gists:{public_gists}</div>
+        <div className=" text-center">
+          <div className="badge-ex">
+            <div className=" badge-primary">Followers: {followers}</div>
+          </div>
+          <div className="badge-ex2">
+            <div className=" badge-success">Following: {following}</div>
+          </div>
+          <div className="badge-ex2">
+            <div className=" badge-light">Public Repos: {public_repos}</div>
+          </div>
+          <div className="badge-ex2">
+            <div className=" badge-dark">Public Gists: {public_gists}</div>
+          </div>
         </div>
         <h5 style={{ marginLeft: "5.2em" }}> Repositories are:</h5>
         <Repos repos={this.props.repos} />
